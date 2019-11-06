@@ -25,13 +25,13 @@ After installing and downloading all of the above follow the next steps:
 
 you can now observe a 3D model of the system, simulation movement should mimic sensor movement. 
 
-# IDE
+## IDE
 
 ST AlgoBuilder
 
-# License
+## License
 
-MIT
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
 
