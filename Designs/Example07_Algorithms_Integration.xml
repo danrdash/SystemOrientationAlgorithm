@@ -1,0 +1,1232 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2384</AppVersion>
+    <Location>C:/AlgoBuilder/Example07_Algorithms_Integration</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-L476RG + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Mux_Int_1_out</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Quaternions_9X_1_data</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Activity_Index_1_data</Node>
+        <Node>Motion_Intensity_Index_1_data</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Calibrated_Angular_Rate_dps_1_data</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Calibrated_Magnetic_Field_uT_1_quality</Node>
+        <Node>Calibrated_Magnetic_Field_uT_1_data</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Step_Counter_1_steps</Node>
+        <Node>Step_Counter_1_cadence</Node>
+        <Node>uT_To_mG_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionFX</Text>
+        <X>-2056</X>
+        <Y>-674</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionAW</Text>
+        <X>-2060</X>
+        <Y>-598</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionID</Text>
+        <X>-2054</X>
+        <Y>-524</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionGC</Text>
+        <X>-2057</X>
+        <Y>-448</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionMC</Text>
+        <X>-2055</X>
+        <Y>-370</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>MotionPW</Text>
+        <X>-2056</X>
+        <Y>-293</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Algo Reset</Text>
+        <X>-2246</X>
+        <Y>-499</Y>
+    </TextNote>
+    <Block>
+        <Name>Mux (Int)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Int multiplexer. Creates array from scalar inputs.</Description>
+        <X>-1887</X>
+        <Y>-562</Y>
+        <Width>60</Width>
+        <Height>75</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Activity_Index_1_data</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Motion_Intensity_Index_1_data</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Calibrated_Magnetic_Field_uT_1_quality</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Step_Counter_1_steps</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in5</Name>
+                <Description>Input 5.</Description>
+                <Node>Step_Counter_1_cadence</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>5</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Quaternions 9X</Name>
+        <DisplayName>Quaternions 9X</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves the oriantion data in the magnetic North referential. The output data is an orientation in quaternion format. The orinatation is computed usign accelerometer, gyroscope and magnetometer sensor. Sample rate for this algorithm is 100Hz.</Description>
+        <X>-2077</X>
+        <Y>-643</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>data</Name>
+                <Description>Oriantation data in quaternion format.</Description>
+                <Node>Quaternions_9X_1_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quternions9X_GetData(%SensorHubHandle%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionFX_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Activity Index</Name>
+        <DisplayName>Activity##Index</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves one of the following activity: noactivity (0), stationary (1), standing (2), sitting (3), lying (4), walking (5), fast walking (6), jogging (7), biking (8). Sample rate for this algorithm is 16Hz.</Description>
+        <X>-2079</X>
+        <Y>-569</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the algorithm reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>data</Name>
+                <Description>Activity index.</Description>
+                <Node>Activity_Index_1_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>ActivityWrist_GetData(%SensorHubHandle%, %reset%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionAW_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Motion Intensity Index</Name>
+        <DisplayName>Motion Intensity##Index</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves motion intensity index from 0 to 10. 0 means still position, 10 means sprinting. Sample rate for this algorithm is 16Hz.</Description>
+        <X>-2079</X>
+        <Y>-496</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the algorithm reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>data</Name>
+                <Description>Motion intensity index.</Description>
+                <Node>Motion_Intensity_Index_1_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>MotionIntensity_GetData(%SensorHubHandle%, %reset%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionID_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Calibrated Angular Rate [dps]</Name>
+        <DisplayName>Cal. Angular Rate##[dps]</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves the calibrated gyroscope data, with offset correction. Sample rate for this algorithm is 50Hz.</Description>
+        <X>-2079</X>
+        <Y>-421</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the algorithm reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Calibrated gyroscope data in dps unit.</Description>
+                <Node>Calibrated_Angular_Rate_dps_1_data</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Acc Threshold</Name>
+                <Value>0.01</Value>
+                <Min>0.003</Min>
+                <Max>0.05</Max>
+                <Description>Accelerometer threshold to detect steady state in [g].</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gyro Threshold</Name>
+                <Value>0.2</Value>
+                <Min>0.008</Min>
+                <Max>0.4</Max>
+                <Description>Gyroscope threshold to detect steady state in [dps].</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Filter Constant</Name>
+                <Value>0.002</Value>
+                <Min>0</Min>
+                <Max>1</Max>
+                <Description>Constant for internal filter.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Fast Start</Name>
+                <Value>1</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Set to ON for fast convergence at the initialization.</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Max Angular Rate</Name>
+                <Value>15</Value>
+                <Description>Maximum expected angular rate offset when still in [dps].</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Max Acceleration</Name>
+                <Value>1.3</Value>
+                <Description>Maximum acceleration module when still in [g].</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>GyroCal_GetData(%SensorHubHandle%, %reset%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionGC_Init(%Acc Threshold%, %Gyro Threshold%, %Filter Constant%, %Fast Start%, %Max Acceleration%, %Max Angular Rate%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Calibrated Magnetic Field [uT]</Name>
+        <DisplayName>Cal. Magnetic Field##[uT]</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves the calibrated magnetometer data, with Hard Iron and Scale Factor correction. Sample rate for this algorithm is 100Hz.</Description>
+        <X>-2079</X>
+        <Y>-344</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the algorithm reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Calibrated magnetometer data in microtesla unit.</Description>
+                <Node>Calibrated_Magnetic_Field_uT_1_data</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>quality</Name>
+                <Description>Quality of calibration from 0 to 3.</Description>
+                <Node>Calibrated_Magnetic_Field_uT_1_quality</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>MagCal_GetData(%SensorHubHandle%, %reset%, %data%, %quality%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionMC_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>uT To mG</Name>
+        <DisplayName>[uT] To [mG]</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Converts magnetic field units from mircotesla to milligauss.</Description>
+        <X>-1927</X>
+        <Y>-354</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>in</Name>
+                <Description>Magnetic field vector in microtesla.</Description>
+                <Node>Calibrated_Magnetic_Field_uT_1_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>out</Name>
+                <Description>Magnetic field vector in milligauss.</Description>
+                <Node>uT_To_mG_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>TeslaToGauss(%in%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Step Counter</Name>
+        <DisplayName>Step##Counter</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieves number of steps. Sample rate for this algorithm is 50Hz.</Description>
+        <X>-2079</X>
+        <Y>-265</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the algorithm reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>steps</Name>
+                <Description>Number of steps since last reset.</Description>
+                <Node>Step_Counter_1_steps</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>cadence</Name>
+                <Description>Cadence of steps.</Description>
+                <Node>Step_Counter_1_cadence</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Activity Recognition</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Enable or disable activity recognition for better pedometer performance.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>PedometerWrist_GetData(%SensorHubHandle%, %reset%, %steps%, %cadence%);</Line>
+        </Command>
+        <InitCode>
+            <Line>MotionPW_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>-2252</X>
+        <Y>-558</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>100</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>1</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>1</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>-1786</X>
+        <Y>-646</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>Quaternions_9X_1_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Quaternions</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>q1</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>q2</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>q3</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>q4</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Waveform 5</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Waveform 6</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>[-]</Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>3</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>1</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>-1786</X>
+        <Y>-420</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>Calibrated_Angular_Rate_dps_1_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>3</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Calibrated##Gyroscope</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>X</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>Y</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>Z</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>Waveform 4</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Waveform 5</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Waveform 6</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>[dps]</Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>3</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>500</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Value</Name>
+        <DisplayName>Value</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Displays up to eight integer values.</Description>
+        <X>-1786</X>
+        <Y>-545</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>in</Name>
+                <Description>Input data to display. The input data size has to match with number of values.</Description>
+                <Node>Mux_Int_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>5</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values to display. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Output##Value</Value>
+                <Description>Label of the values window.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Activity</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Intensity</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Cal. Quality</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Steps</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value>Cadence</Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value>Value 6</Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value>Value 7</Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value>Value 8</Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 1 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 2 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 3 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 4 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 5 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 6 Name</Name>
+                <Value>Unit 6</Value>
+                <Description>Unit of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 7 Name</Name>
+                <Value>Unit 7</Value>
+                <Description>Unit of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 8 Name</Name>
+                <Value>Unit 8</Value>
+                <Description>Unit of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Value (Binary)</Name>
+        <DisplayName>Input Value##(Binary)</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Get up to eight logic values from Unicleo-GUI.</Description>
+        <X>-2252</X>
+        <Y>-472</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>out</Name>
+                <Description>Output data.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Input##Value##Binary</Value>
+                <Description>Title of the window.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 1</Name>
+                <Value>0</Value>
+                <Description>Defines default value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 2</Name>
+                <Value>0</Value>
+                <Description>Defines default value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 3</Name>
+                <Value>0</Value>
+                <Description>Defines default value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 4</Name>
+                <Value>0</Value>
+                <Description>Defines default value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 5</Name>
+                <Value>0</Value>
+                <Description>Defines default value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 6</Name>
+                <Value>0</Value>
+                <Description>Defines default value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 7</Name>
+                <Value>0</Value>
+                <Description>Defines default value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 8</Name>
+                <Value>0</Value>
+                <Description>Defines default value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Reset</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Value 2</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Value 3</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Value 4</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>Input_Value_Init(%out%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Scatter</Name>
+        <DisplayName>Scatter</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Displays scatter plot of two or three input values.</Description>
+        <X>-1785</X>
+        <Y>-354</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Size of Input%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot. The input data size has to match with size of input.</Description>
+                <Node>uT_To_mG_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Size of Input</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>3</Max>
+                <Description>Defines number of input values. Value must be 2 or 3. If value is 2 there will be only one waveform, if value is 3 there will be three waveforms.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Scatter Name</Name>
+                <Value>Scatter Plot</Value>
+                <Description>Label of the scatter.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>X</Value>
+                <Description>Name of the input value 1.</Description>
+                <DisplayDependency>Size of Input</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Y</Value>
+                <Description>Name of the input value 2.</Description>
+                <DisplayDependency>Size of Input</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Z</Value>
+                <Description>Name of the input value 3.</Description>
+                <DisplayDependency>Size of Input</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>mGauss</Value>
+                <Description>Name of scatter units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>1</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>1</Value>
+                <Description>Scatter full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>

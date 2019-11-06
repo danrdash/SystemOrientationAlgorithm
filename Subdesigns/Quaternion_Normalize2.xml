@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>Quaternion_Normalize2</Name>
+        <DisplayName>Quaternion_Normalize2</DisplayName>
+        <Version>1.9</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Input</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quaternion_Normalize2(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Quaternion_Normalize2.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Normalize_Quat_1_Output</Node>
+        <Node>Vector_Divide_1_Output</Node>
+    </Nodes>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-494</X>
+        <Y>-155</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Input</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Normalize_Quat</Name>
+        <DisplayName>Normalize_Quat</DisplayName>
+        <Version>1.5</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-388</X>
+        <Y>-61</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Normalize_Quat_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Normalize_Quat(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Normalize_Quat.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>-50</X>
+        <Y>-116</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Vector_Divide_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Vector_Divide</Name>
+        <DisplayName>Vector_Divide</DisplayName>
+        <Version>1.6</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-184</X>
+        <Y>-115</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Vector</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>NormalizedFloat</Name>
+                <Description></Description>
+                <Node>Normalize_Quat_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Vector_Divide_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Vector_Divide(%Vector%, %NormalizedFloat%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Vector_Divide.xml</File>
+        </Function>
+    </Block>
+</Subdesign>

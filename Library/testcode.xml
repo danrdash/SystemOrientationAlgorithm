@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Library>
+    <Name>testcode</Name>
+    <Version>1.0</Version>
+    <Block>
+        <Name>hello_world</Name>
+        <DisplayName>hello_world</DisplayName>
+        <Version>1.0</Version>
+        <Description>Test run</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>25</Width>
+        <Height>25</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>in1</Name>
+                <Description>Q_A( float x4)</Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>out1</Name>
+                <Description>output floatx4</Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Command>
+            <Line>out1*in1+a;</Line>
+        </Command>
+        <InitCode>
+            <Line>a=1;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+</Library>

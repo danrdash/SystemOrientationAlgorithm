@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <Location>C:/Users/Idan Einav/Downloads/wtf2</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-F401RE + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Sensor_Hub_1_out</Node>
+        <Node>Timestamp_ms_1_out</Node>
+        <Node>testintegrator_1_Output</Node>
+    </Nodes>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>-246</X>
+        <Y>72</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>100</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>1</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>1</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>testintegrator</Name>
+        <DisplayName>testintegrator</DisplayName>
+        <Version>1.11</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>223</X>
+        <Y>166</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Timestamp_ms_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>testintegrator_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>testintegrator(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>testintegrator.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Timestamp [ms]</Name>
+        <DisplayName>Timestamp##[ms]</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Return the number of milliseconds elapsed since system startup.</Description>
+        <X>-5</X>
+        <Y>94</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Number of milliseconds elapsed since system startup.</Description>
+                <Node>Timestamp_ms_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = HAL_GetTick();</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Value</Name>
+        <DisplayName>Value</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Displays up to eight integer values.</Description>
+        <X>496</X>
+        <Y>150</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>in</Name>
+                <Description>Input data to display. The input data size has to match with number of values.</Description>
+                <Node>testintegrator_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values to display. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Values</Value>
+                <Description>Label of the values window.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Value 1</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Value 2</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Value 3</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Value 4</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value>Value 5</Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value>Value 6</Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value>Value 7</Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value>Value 8</Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 1 Name</Name>
+                <Value>Unit 1</Value>
+                <Description>Unit of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 2 Name</Name>
+                <Value>Unit 2</Value>
+                <Description>Unit of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 3 Name</Name>
+                <Value>Unit 3</Value>
+                <Description>Unit of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 4 Name</Name>
+                <Value>Unit 4</Value>
+                <Description>Unit of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 5 Name</Name>
+                <Value>Unit 5</Value>
+                <Description>Unit of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 6 Name</Name>
+                <Value>Unit 6</Value>
+                <Description>Unit of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 7 Name</Name>
+                <Value>Unit 7</Value>
+                <Description>Unit of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 8 Name</Name>
+                <Value>Unit 8</Value>
+                <Description>Unit of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>

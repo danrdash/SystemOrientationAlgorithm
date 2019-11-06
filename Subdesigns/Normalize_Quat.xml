@@ -1,0 +1,604 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>Normalize_Quat</Name>
+        <DisplayName>Normalize_Quat</DisplayName>
+        <Version>1.5</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Input</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Normalize_Quat(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Normalize_Quat.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Square_1_out</Node>
+        <Node>Square_2_out</Node>
+        <Node>Square_3_out</Node>
+        <Node>Square_4_out</Node>
+        <Node>Sum_1_out</Node>
+        <Node>Square_Root_1_out</Node>
+    </Nodes>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-489</X>
+        <Y>-126</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Input</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-341</X>
+        <Y>-127</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>-38</X>
+        <Y>-188</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>-42</X>
+        <Y>-132</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>-51</X>
+        <Y>-70</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>-56</X>
+        <Y>-10</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>212</X>
+        <Y>-86</Y>
+        <Width>50</Width>
+        <Height>60</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Square_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Square_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Square_3_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Square_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square Root</Name>
+        <DisplayName>Square##Root</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Computes the square root value.</Description>
+        <X>366</X>
+        <Y>-77</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Sum_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_Root_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = sqrt(%in%[0]);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>550</X>
+        <Y>-82</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Square_Root_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

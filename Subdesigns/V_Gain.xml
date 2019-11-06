@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>V_Gain</Name>
+        <DisplayName>V_Gain</DisplayName>
+        <Version>1.5</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Input</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>V_Gain(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>V_Gain.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Gain_1_out</Node>
+        <Node>Gain_2_out</Node>
+        <Node>Gain_3_out</Node>
+        <Node>Gain_4_out</Node>
+        <Node>Mux_Float_1_out</Node>
+    </Nodes>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>-55</X>
+        <Y>-22</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>-159</X>
+        <Y>-15</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Gain_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Gain_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Gain_3_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Gain_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-680</X>
+        <Y>-138</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Input</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-509</X>
+        <Y>-119</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>-334</X>
+        <Y>-183</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>0.5</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>-329</X>
+        <Y>-103</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>0.5</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>-336</X>
+        <Y>-15</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>0.5</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>-331</X>
+        <Y>65</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>0.5</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

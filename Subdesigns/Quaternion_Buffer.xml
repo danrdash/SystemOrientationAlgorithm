@@ -1,0 +1,793 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>Quaternion_Buffer</Name>
+        <DisplayName>Quaternion_Buffer</DisplayName>
+        <Version>1.11</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_A</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>Full</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quaternion_Buffer(%Q_A%, %Output%, %Full%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Quaternion_Buffer.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Mux_Float_1_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Circular_Buffer_1_out</Node>
+        <Node>Circular_Buffer_4_out</Node>
+        <Node>Circular_Buffer_3_out</Node>
+        <Node>Circular_Buffer_2_out</Node>
+        <Node>Demux_Float_2_out1</Node>
+        <Node>Demux_Float_3_out1</Node>
+        <Node>Demux_Float_4_out1</Node>
+        <Node>Demux_Float_5_out1</Node>
+        <Node>Circular_Buffer_4_full</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Q_A</Text>
+        <X>-606</X>
+        <Y>-40</Y>
+    </TextNote>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-671</X>
+        <Y>-6</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Q_A</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-524</X>
+        <Y>-19</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>-335</X>
+        <Y>-139</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_1_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>2</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>-342</X>
+        <Y>-53</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_2_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>2</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>-330</X>
+        <Y>19</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_3_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>2</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-218</X>
+        <Y>-52</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Circular_Buffer_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_3_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-191</X>
+        <Y>28</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Circular_Buffer_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_4_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-186</X>
+        <Y>130</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Circular_Buffer_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_5_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-192</X>
+        <Y>-132</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Circular_Buffer_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_2_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>56</X>
+        <Y>-19</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Demux_Float_2_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Demux_Float_3_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Demux_Float_4_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Demux_Float_5_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>-341</X>
+        <Y>130</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_4_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+                <Node>Circular_Buffer_4_full</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>2</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>243</X>
+        <Y>-1</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Int)</Name>
+        <DisplayName>Output Terminal##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Integer output terminal for subdesigns.</Description>
+        <X>-206</X>
+        <Y>219</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Circular_Buffer_4_full</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Full</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

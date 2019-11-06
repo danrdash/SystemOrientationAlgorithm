@@ -1,0 +1,1853 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>1.7.1.1603</AppVersion>
+    <SubdesignBlock>
+        <Name>IntensityClasification</Name>
+        <DisplayName>IntensityClasification</DisplayName>
+        <Version>1.14</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Input</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>IntensityClasification(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>IntensityClasification.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Constant_Float_1_out</Node>
+        <Node>Constant_Float_4_out</Node>
+        <Node>Constant_Float_6_out</Node>
+        <Node>Greater_than_1_out</Node>
+        <Node>Constant_Int_1_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Greater_than_2_out</Node>
+        <Node>Constant_Int_3_out</Node>
+        <Node>Switch_Int_1_out</Node>
+        <Node>Constant_Int_4_out</Node>
+        <Node>Switch_Int_2_out</Node>
+        <Node>Greater_than_3_out</Node>
+        <Node>Constant_Float_3_out</Node>
+        <Node>Greater_than_4_out</Node>
+        <Node>Constant_Int_5_out</Node>
+        <Node>Constant_Float_5_out</Node>
+        <Node>Greater_than_5_out</Node>
+        <Node>Constant_Int_6_out</Node>
+        <Node>Switch_Int_3_out</Node>
+        <Node>Switch_Int_4_out</Node>
+        <Node>Constant_Int_7_out</Node>
+        <Node>Greater_than_6_out</Node>
+        <Node>Greater_than_7_out</Node>
+        <Node>Switch_Int_7_out</Node>
+        <Node>Constant_Int_8_out</Node>
+        <Node>Constant_Float_7_out</Node>
+        <Node>Constant_Float_8_out</Node>
+        <Node>Constant_Float_11_out</Node>
+        <Node>Greater_than_8_out</Node>
+        <Node>Switch_Int_8_out</Node>
+        <Node>Constant_Int_9_out</Node>
+        <Node>Constant_Float_10_out</Node>
+        <Node>Greater_than_9_out</Node>
+        <Node>Switch_Int_9_out</Node>
+        <Node>Constant_Int_10_out</Node>
+        <Node>Constant_Float_9_out</Node>
+        <Node>Greater_than_10_out</Node>
+        <Node>Switch_Int_10_out</Node>
+        <Node>Constant_Int_11_out</Node>
+        <Node>Switch_Int_5_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Switch_Int_6_out</Node>
+    </Nodes>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>8</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>471</X>
+        <Y>220</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_11_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_8_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>10</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>344</X>
+        <Y>138</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_10_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.3</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>187</X>
+        <Y>309</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_3_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_5_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>585</X>
+        <Y>420</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_7_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_7_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_6_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>8</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>469</X>
+        <Y>297</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_8_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>9</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>8</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>344</X>
+        <Y>369</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_8_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>3</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>67</X>
+        <Y>412</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>5</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>467</X>
+        <Y>455</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_7_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-56</X>
+        <Y>140</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.0001</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>190</X>
+        <Y>72</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_3_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-54</X>
+        <Y>249</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.0003</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>11</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>471</X>
+        <Y>-53</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_11_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>6</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-56</X>
+        <Y>371</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.0008</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>9</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>471</X>
+        <Y>104</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_10_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_9_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>10</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>588</X>
+        <Y>-21</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_5_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_11_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_10_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_10_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>9</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>342</X>
+        <Y>42</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_9_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.01</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>69</X>
+        <Y>299</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>4</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>9</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>471</X>
+        <Y>175</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_9_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>8</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>7</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>342</X>
+        <Y>482</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_7_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>6</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>10</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>471</X>
+        <Y>57</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_10_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>7</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>7</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>467</X>
+        <Y>410</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_7_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>10</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>7</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>587</X>
+        <Y>307</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_8_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_8_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_7_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_7_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>9</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>590</X>
+        <Y>70</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_10_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_10_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_9_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_9_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-58</X>
+        <Y>44</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.000003</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>71</X>
+        <Y>59</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>2</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>10</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>471</X>
+        <Y>-4</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_9_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_10_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>71</X>
+        <Y>177</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>3</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>71</X>
+        <Y>-99</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>0</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>188</X>
+        <Y>-19</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Constant_Int_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>7</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>469</X>
+        <Y>342</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_8_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_7_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>71</X>
+        <Y>222</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_6_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>71</X>
+        <Y>-51</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>1</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>11</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>346</X>
+        <Y>247</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_11_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>1</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>8</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>589</X>
+        <Y>185</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_9_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_9_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_8_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_8_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>71</X>
+        <Y>-2</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>69</X>
+        <Y>344</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>189</X>
+        <Y>187</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_4_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>67</X>
+        <Y>457</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_5_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>185</X>
+        <Y>422</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_4_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Constant_Int_6_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_5_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>71</X>
+        <Y>106</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-58</X>
+        <Y>484</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.001</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Int)</Name>
+        <DisplayName>Output Terminal##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Integer output terminal for subdesigns.</Description>
+        <X>695</X>
+        <Y>424</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Switch_Int_6_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-63</X>
+        <Y>-97</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Input</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

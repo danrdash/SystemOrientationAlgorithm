@@ -1,0 +1,2097 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>F_g</Name>
+        <DisplayName>F_g</DisplayName>
+        <Version>1.9</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quaternion</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Acceleration</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>F_g(%Quaternion%, %Acceleration%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>F_g.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Multiply_1_out</Node>
+        <Node>Multiply_2_out</Node>
+        <Node>Sum_1_out</Node>
+        <Node>Gain_1_out</Node>
+        <Node>Multiply_4_out</Node>
+        <Node>Gain_2_out</Node>
+        <Node>Sum_3_out</Node>
+        <Node>Multiply_3_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Demux_Float_2_out2</Node>
+        <Node>Demux_Float_2_out3</Node>
+        <Node>Gain_3_out</Node>
+        <Node>Sum_6_out</Node>
+        <Node>Multiply_6_out</Node>
+        <Node>Multiply_5_out</Node>
+        <Node>Demux_Float_2_out4</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Demux_Float_3_out2</Node>
+        <Node>Demux_Float_3_out2</Node>
+        <Node>Demux_Float_3_out3</Node>
+        <Node>Demux_Float_3_out3</Node>
+        <Node>Constant_Float_1_out</Node>
+        <Node>Sum_2_out</Node>
+        <Node>Sum_4_out</Node>
+        <Node>Sum_5_out</Node>
+        <Node>Mux_Float_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Quaternion</Text>
+        <X>-539</X>
+        <Y>-181</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Accelerometer</Text>
+        <X>-629</X>
+        <Y>-5</Y>
+    </TextNote>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-188</X>
+        <Y>-118</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-188</X>
+        <Y>-170</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-184</X>
+        <Y>-2</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_3_out2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_3_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-184</X>
+        <Y>50</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_3_out3</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_3_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>33</X>
+        <Y>12</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Sum_6_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>2</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>32</X>
+        <Y>-305</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Sum_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>2</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>-79</X>
+        <Y>-154</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Multiply_4_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Multiply_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>6</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>-75</X>
+        <Y>14</Y>
+        <Width>50</Width>
+        <Height>45</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Multiply_5_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Multiply_6_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_6_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>176</X>
+        <Y>-146</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Gain_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_2_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Gain</Name>
+        <DisplayName>Gain##x %Gain%</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Multiply input value by constant.</Description>
+        <X>29</X>
+        <Y>-156</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Sum_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output signal.</Description>
+                <Node>Gain_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Gain</Name>
+                <Value>2</Value>
+                <Description>Multiplication factor.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = (float) %Gain% * %in%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>5</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>180</X>
+        <Y>22</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Gain_3_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_2_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_5_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>-206</X>
+        <Y>107</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.5</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-407</X>
+        <Y>-214</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-185</X>
+        <Y>-319</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Multiply (*)</Name>
+        <DisplayName>*</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Multiplies value in1 and value in2.</Description>
+        <X>-185</X>
+        <Y>-267</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Multiply_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] * %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>530</X>
+        <Y>-108</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>3</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-404</X>
+        <Y>-32</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_3_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_3_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>189</X>
+        <Y>-297</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Gain_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Demux_Float_2_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>389</X>
+        <Y>-160</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Sum_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Sum_4_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Sum_5_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>-73</X>
+        <Y>-304</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Multiply_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Multiply_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>1</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-468</X>
+        <Y>232</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_2_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_2_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_2_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-623</X>
+        <Y>34</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Acceleration</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-565</X>
+        <Y>-142</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Quaternion</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

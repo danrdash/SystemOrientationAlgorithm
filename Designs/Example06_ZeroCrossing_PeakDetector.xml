@@ -1,0 +1,1720 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2384</AppVersion>
+    <Location>C:/AlgoBuilder/Example06_ZeroCrossing_PeakDetector</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-L476RG + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Acceleration_g_2_data</Node>
+        <Node>Constant_Float_1_out</Node>
+        <Node>Magnitude_1_out</Node>
+        <Node>Moving_Average_1_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Constant_Int_1_out</Node>
+        <Node>Zero_Crossing_1_out</Node>
+        <Node>Zero_Crossing_2_out</Node>
+        <Node>Peak_Detector_1_out</Node>
+        <Node>Peak_Detector_2_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Switch_Int_3_out</Node>
+        <Node>Subtract_1_out</Node>
+        <Node>Counter_1_out</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Switch_Int_4_out</Node>
+        <Node>Switch_Int_3_out</Node>
+        <Node>Switch_Int_2_out</Node>
+        <Node>Switch_Int_1_out</Node>
+        <Node>Mux_Int_1_out</Node>
+        <Node>Feature_Computation_1_peak</Node>
+        <Node>Constant_Float_2_out</Node>
+        <Node>Feature_Computation_1_peak</Node>
+        <Node>Greater_than_1_out</Node>
+        <Node>Greater_than_1_out</Node>
+        <Node>Greater_than_1_out</Node>
+        <Node>Greater_than_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Zero Crossing &amp; Peak Detector Test</Text>
+        <X>828</X>
+        <Y>201</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Feature Computation Test</Text>
+        <X>676</X>
+        <Y>648</Y>
+    </TextNote>
+    <Block>
+        <Name>Subtract (-)</Name>
+        <DisplayName>-</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Substracts value in2 from value in1.</Description>
+        <X>608</X>
+        <Y>202</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Moving_Average_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Subtract_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] - %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>482</X>
+        <Y>242</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>1.0</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Moving Average</Name>
+        <DisplayName>Moving##Average</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Calculate moving avarage with defined lenght.</Description>
+        <X>481</X>
+        <Y>164</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Magnitude_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Moving average value.</Description>
+                <Node>Moving_Average_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Length</Name>
+                <Value>20</Value>
+                <Min>0</Min>
+                <Description>Lenght of the moving average.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem1</Name>
+                <Size>%Length%</Size>
+            </Item>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem2</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>MovingAverage(%in%, %out%, %Length%, %mem1%, %mem2%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Counter</Name>
+        <DisplayName>Counter</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Counts number of positive or negative edges.</Description>
+        <X>991</X>
+        <Y>248</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Switch_Int_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Counter value.</Description>
+                <Node>Counter_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Edge</Name>
+                <Value>1</Value>
+                <Enum>Negative=0,Positive=1</Enum>
+                <Description>Define which edges to count.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>2</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Counter(%in%, %out%, %Edge%, %mem%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Zero Crossing</Name>
+        <DisplayName>Zero##Crossing</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Detects if the input signal cross the zero value.</Description>
+        <X>703</X>
+        <Y>252</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Zero Crossing detected.</Description>
+                <Node>Zero_Crossing_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Edge</Name>
+                <Value>0</Value>
+                <Enum>Both=2,Negative=0,Positive=1</Enum>
+                <Description>Defines if possitive, negative or both zero corssings should be detected.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Zero_Crossing(%in%, %out%, %Edge%, %mem%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>537</X>
+        <Y>521</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>0</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Float)</Name>
+        <DisplayName>%Value%##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Defines float constant.</Description>
+        <X>668</X>
+        <Y>593</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Float_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Value</Name>
+                <Value>0.5</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>876</X>
+        <Y>244</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Zero_Crossing_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>877</X>
+        <Y>302</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Zero_Crossing_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>702</X>
+        <Y>410</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>0</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Int)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Int multiplexer. Creates array from scalar inputs.</Description>
+        <X>994</X>
+        <Y>324</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Switch_Int_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Switch_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Switch_Int_3_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Switch_Int_4_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Int_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Feature Computation</Name>
+        <DisplayName>Feature##Computation</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Calculates selected features of input signal. The value are calculated from the N last samples.</Description>
+        <X>669</X>
+        <Y>481</Y>
+        <Width>80</Width>
+        <Height>80</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the reset.</Description>
+                <Node>Constant_Int_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>max</Name>
+                <Description>Maximum value of the input signal.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>min</Name>
+                <Description>Minimum value of the input signal.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>mean</Name>
+                <Description>Mean value of the input signal.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>var</Name>
+                <Description>Variance value of the input signal.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>peak</Name>
+                <Description>Peak-to-peak of the input signal.</Description>
+                <Node>Feature_Computation_1_peak</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>energy</Name>
+                <Description>Energy of the input signal.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Length</Name>
+                <Value>25</Value>
+                <Min>1</Min>
+                <Description>Define length of buffer used for features calculation.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem1</Name>
+                <Size>2</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem2</Name>
+                <Size>%Buffer Length%</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Feature_Computation(%in%, %reset%, %max%, %min%, %mean%, %var%, %peak%, %energy%, %Buffer Length%, %mem1%, %mem2%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>877</X>
+        <Y>422</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Peak_Detector_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Greater than (>)</Name>
+        <DisplayName>></DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Checks if in1 is greater than in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>788</X>
+        <Y>564</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Feature_Computation_1_peak</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Float_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] > %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Peak Detector</Name>
+        <DisplayName>Peak##Detector</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Detects peaks on input signal.</Description>
+        <X>703</X>
+        <Y>301</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Peak detected.</Description>
+                <Node>Peak_Detector_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Peak</Name>
+                <Value>1</Value>
+                <Enum>Both=2,Negative=0,Positive=1</Enum>
+                <Description>Defines if possitive, negative or both peaks should be detected.</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Threshold</Name>
+                <Value>0.1</Value>
+                <Description>Signal with amplitude less than Threshold is ignored.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem</Name>
+                <Size>2</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Peak_Detector(%in%, %out%, %Peak%, %Threshold%, %mem%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Peak Detector</Name>
+        <DisplayName>Peak##Detector</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Detects peaks on input signal.</Description>
+        <X>703</X>
+        <Y>352</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Peak detected.</Description>
+                <Node>Peak_Detector_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Peak</Name>
+                <Value>0</Value>
+                <Enum>Both=2,Negative=0,Positive=1</Enum>
+                <Description>Defines if possitive, negative or both peaks should be detected.</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>Threshold</Name>
+                <Value>0.1</Value>
+                <Description>Signal with amplitude less than Threshold is ignored.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem</Name>
+                <Size>2</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Peak_Detector(%in%, %out%, %Peak%, %Threshold%, %mem%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Switch (Int)</Name>
+        <DisplayName>Switch ##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Switch for integer variables. If control is 0 the output is equal to input 1 otherwise output is equal to input 2.</Description>
+        <X>877</X>
+        <Y>360</Y>
+        <Width>60</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Peak_Detector_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>control</Name>
+                <Description>control signal.</Description>
+                <Node>Greater_than_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Switch_Int_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>SignalSwitchInt(%in1%, %in2%, %control%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Magnitude</Name>
+        <DisplayName>Magnitude</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Calculates magnidude of the input vector.</Description>
+        <X>364</X>
+        <Y>164</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>in</Name>
+                <Description>Input vector.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Magnitude.</Description>
+                <Node>Magnitude_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = sqrt(%in%[0]*%in%[0] + %in%[1]*%in%[1] + %in%[2]*%in%[2]);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Acceleration [g]</Name>
+        <DisplayName>Acceleration##[g]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Retrieve the accelerometer data.</Description>
+        <X>229</X>
+        <Y>164</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Accelerometer data (acceleration) in g unit.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Accelero_Sensor_GetData(%SensorHubHandle%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Accelero_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>84</X>
+        <Y>164</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>100</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>1</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>0</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Zero Crossing</Name>
+        <DisplayName>Zero##Crossing</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Detects if the input signal cross the zero value.</Description>
+        <X>702</X>
+        <Y>202</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Zero Crossing detected.</Description>
+                <Node>Zero_Crossing_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Edge</Name>
+                <Value>1</Value>
+                <Enum>Both=2,Negative=0,Positive=1</Enum>
+                <Description>Defines if possitive, negative or both zero corssings should be detected.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Zero_Crossing(%in%, %out%, %Edge%, %mem%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Value</Name>
+        <DisplayName>Value</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Displays up to eight integer values.</Description>
+        <X>1097</X>
+        <Y>248</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>in</Name>
+                <Description>Input data to display. The input data size has to match with number of values.</Description>
+                <Node>Counter_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values to display. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Output##Value</Value>
+                <Description>Label of the values window.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Positive Peaks</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Value 2</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Value 3</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Value 4</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value>Value 5</Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value>Value 6</Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value>Value 7</Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value>Value 8</Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 1 Name</Name>
+                <Value>[-]</Value>
+                <Description>Unit of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 2 Name</Name>
+                <Value>Unit 2</Value>
+                <Description>Unit of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 3 Name</Name>
+                <Value>Unit 3</Value>
+                <Description>Unit of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 4 Name</Name>
+                <Value>Unit 4</Value>
+                <Description>Unit of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 5 Name</Name>
+                <Value>Unit 5</Value>
+                <Description>Unit of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 6 Name</Name>
+                <Value>Unit 6</Value>
+                <Description>Unit of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 7 Name</Name>
+                <Value>Unit 7</Value>
+                <Description>Unit of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 8 Name</Name>
+                <Value>Unit 8</Value>
+                <Description>Unit of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Logic Analyzer</Name>
+        <DisplayName>Logic##Analyzer</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Displays up to eight logic values in real-time chart. The X-axis represents time, Y-axis is logic state (0 or 1).</Description>
+        <X>1096</X>
+        <Y>334</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>%Number of Channels%</Size>
+                <Name>in</Name>
+                <Description>Input data to display (y-axis value). The input data size has to match with number of channels.</Description>
+                <Node>Mux_Int_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Channels</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Max>16</Max>
+                <Description>Defines number of channels to plot. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Logic Analyzer Name</Name>
+                <Value>Logic##Analyzer</Value>
+                <Description>Label of the logic analyzer.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 1 Name</Name>
+                <Value>Positive Zero Crossing</Value>
+                <Description>Label of the channel 1.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 2 Name</Name>
+                <Value>Negative Zero Crossing</Value>
+                <Description>Label of the channel 2.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 3 Name</Name>
+                <Value>Positive Peaks</Value>
+                <Description>Label of the channel 3.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 4 Name</Name>
+                <Value>Negative Peaks</Value>
+                <Description>Label of the channel 4.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 5 Name</Name>
+                <Value>Ch 5</Value>
+                <Description>Label of the channel 5.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 6 Name</Name>
+                <Value>Ch 6</Value>
+                <Description>Label of the channel 6.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 7 Name</Name>
+                <Value>Ch 7</Value>
+                <Description>Label of the channel 7.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 8 Name</Name>
+                <Value>Ch 8</Value>
+                <Description>Label of the channel 8.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 9 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 9.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 10 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 10.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 11 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 11.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 12 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 12.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 13 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 13.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 14 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 14.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 15 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 15.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Channel 16 Name</Name>
+                <Value></Value>
+                <Description>Label of the channel 16.</Description>
+                <DisplayDependency>Number of Channels</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Value</Name>
+        <DisplayName>Value</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Displays up to eight integer values.</Description>
+        <X>1095</X>
+        <Y>523</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>in</Name>
+                <Description>Input data to display. The input data size has to match with number of values.</Description>
+                <Node>Feature_Computation_1_peak</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values to display. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Output##Value</Value>
+                <Description>Label of the values window.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Peak-to-Peak</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Value 2</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Value 3</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Value 4</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value>Value 5</Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value>Value 6</Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value>Value 7</Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value>Value 8</Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 1 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 2 Name</Name>
+                <Value>Unit 2</Value>
+                <Description>Unit of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 3 Name</Name>
+                <Value>Unit 3</Value>
+                <Description>Unit of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 4 Name</Name>
+                <Value>Unit 4</Value>
+                <Description>Unit of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 5 Name</Name>
+                <Value>Unit 5</Value>
+                <Description>Unit of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 6 Name</Name>
+                <Value>Unit 6</Value>
+                <Description>Unit of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 7 Name</Name>
+                <Value>Unit 7</Value>
+                <Description>Unit of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 8 Name</Name>
+                <Value>Unit 8</Value>
+                <Description>Unit of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>701</X>
+        <Y>135</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>Subtract_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Acceleration</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>Acceleration without gravity</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>Waveform 2</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>Waveform 3</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>Waveform 4</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Waveform 5</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Waveform 6</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>[g]</Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>3</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>4</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>

@@ -1,0 +1,463 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>J_Transpose_F</Name>
+        <DisplayName>J_Transpose_F</DisplayName>
+        <Version>1.7</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Accelerometer</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quaternion</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>J_Transpose_F(%Accelerometer%, %Quaternion%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>J_Transpose_F.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>Jacobian_Quarternion_1_Output1</Node>
+        <Node>Jacobian_Quarternion_1_Output2</Node>
+        <Node>Jacobian_Quarternion_1_Output3</Node>
+        <Node>Transpose_4_to_3_1_Row_T1</Node>
+        <Node>Transpose_4_to_3_1_Row_T2</Node>
+        <Node>Transpose_4_to_3_1_Row_T3</Node>
+        <Node>Transpose_4_to_3_1_Row_T4</Node>
+        <Node>F_g_1_Output</Node>
+        <Node>Matrix_Mult_1_Matrix_Mult_Out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Acc Input</Text>
+        <X>-482</X>
+        <Y>-190</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Quaternion Input</Text>
+        <X>-504</X>
+        <Y>-16</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>J(Transpose)*F</Text>
+        <X>303</X>
+        <Y>-113</Y>
+    </TextNote>
+    <Block>
+        <Name>Jacobian_Quarternion</Name>
+        <DisplayName>Jacobian_Quarternion</DisplayName>
+        <Version>1.6</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-243</X>
+        <Y>16</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quarternion</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output1</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output2</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output3</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output3</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Jacobian_Quarternion(%Quarternion%, %Output1%, %Output2%, %Output3%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Jacobian_Quarternion.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Transpose_4_to_3</Name>
+        <DisplayName>Transpose_4_to_3</DisplayName>
+        <Version>1.5</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-99</X>
+        <Y>25</Y>
+        <Width>80</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row1</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row2</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row3</Name>
+                <Description></Description>
+                <Node>Jacobian_Quarternion_1_Output3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Row_T1</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Row_T2</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Row_T3</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Row_T4</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T4</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Transpose_4_to_3(%Row1%, %Row2%, %Row3%, %Row_T1%, %Row_T2%, %Row_T3%, %Row_T4%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Transpose_4_to_3.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Matrix_Mult</Name>
+        <DisplayName>Matrix_Mult</DisplayName>
+        <Version>1.9</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>111</X>
+        <Y>-72</Y>
+        <Width>80</Width>
+        <Height>75</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>I1</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>I2</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>I3</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T3</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>I4</Name>
+                <Description></Description>
+                <Node>Transpose_4_to_3_1_Row_T4</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>I_F_1</Name>
+                <Description></Description>
+                <Node>F_g_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Matrix_Mult_Out</Name>
+                <Description></Description>
+                <Node>Matrix_Mult_1_Matrix_Mult_Out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Matrix_Mult(%I1%, %I2%, %I3%, %I4%, %I_F_1%, %Matrix_Mult_Out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Matrix_Mult.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>292</X>
+        <Y>-58</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Matrix_Mult_1_Matrix_Mult_Out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>F_g</Name>
+        <DisplayName>F_g</DisplayName>
+        <Version>1.9</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-210</X>
+        <Y>-147</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quaternion</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Acceleration</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>F_g_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>F_g(%Quaternion%, %Acceleration%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>F_g.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-515</X>
+        <Y>10</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Quaternion</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-469</X>
+        <Y>-164</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Accelerometer</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Subdesign>

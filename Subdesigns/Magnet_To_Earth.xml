@@ -1,0 +1,798 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>Magnet_To_Earth</Name>
+        <DisplayName>Magnet_To_Earth</DisplayName>
+        <Version>1.6</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Magnetometer</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quat</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>b_Vector</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Magnet_To_Earth(%Magnetometer%, %Quat%, %b_Vector%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Magnet_To_Earth.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Quaternion_Conj_1_Output</Node>
+        <Node>Quaternion_Product_1_Output</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Square_1_out</Node>
+        <Node>Square_2_out</Node>
+        <Node>Sum_1_out</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Square_Root_1_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out4</Node>
+        <Node>Mux_Float_1_out</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Quaternion_Product2_1_Output</Node>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Quaternion_n-1</Text>
+        <X>-481</X>
+        <Y>-99</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Magnetometer</Text>
+        <X>-448</X>
+        <Y>-251</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>h vector</Text>
+        <X>-119</X>
+        <Y>-56</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>b vector</Text>
+        <X>482</X>
+        <Y>-58</Y>
+    </TextNote>
+    <Block>
+        <Name>Square Root</Name>
+        <DisplayName>Square##Root</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Computes the square root value.</Description>
+        <X>260</X>
+        <Y>91</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Sum_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_Root_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = sqrt(%in%[0]);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-483</X>
+        <Y>-215</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Magnetometer</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Quaternion_Conj</Name>
+        <DisplayName>Quaternion_Conj</DisplayName>
+        <Version>1.5</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-314</X>
+        <Y>88</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quaternion</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Quaternion_Conj_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quaternion_Conj(%Quaternion%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Quaternion_Conj.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>-55</X>
+        <Y>-13</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Quaternion_Product_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out4</Name>
+                <Description>Output 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>86</X>
+        <Y>50</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Square</Name>
+        <DisplayName>Square</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Elevates the input value at the power 2.</Description>
+        <X>87</X>
+        <Y>124</Y>
+        <Width>60</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Square_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = pow(%in%[0], 2);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>177</X>
+        <Y>90</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Square_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Square_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>2</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>366</X>
+        <Y>-41</Y>
+        <Width>60</Width>
+        <Height>60</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Square_Root_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Demux_Float_1_out4</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>4</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>490</X>
+        <Y>-33</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>b_Vector</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-503</X>
+        <Y>-59</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Quat</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Quaternion_Product</Name>
+        <DisplayName>Quaternion_Product</DisplayName>
+        <Version>1.11</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-194</X>
+        <Y>-7</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_A</Name>
+                <Description></Description>
+                <Node>Quaternion_Product2_1_Output</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_B</Name>
+                <Description></Description>
+                <Node>Quaternion_Conj_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Quaternion_Product_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quaternion_Product(%Q_A%, %Q_B%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Quaternion_Product.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Quaternion_Product2</Name>
+        <DisplayName>Quaternion_Product2</DisplayName>
+        <Version>1.12</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-334</X>
+        <Y>-51</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_A</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_B</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Quaternion_Product2_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Quaternion_Product2(%Q_A%, %Q_B%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Quaternion_Product2.xml</File>
+        </Function>
+    </Block>
+</Subdesign>

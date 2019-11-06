@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Library>
+    <Name>Q_Prod_X</Name>
+    <Version>1.0</Version>
+    <Block>
+        <Name>Quaternion_Product_Block</Name>
+        <DisplayName>Quaternion_Product_Block</DisplayName>
+        <Version>1.0</Version>
+        <Description>Test run</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>200</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_A</Name>
+                <Description>Quaternion A ( scalar + 3 entry vector )</Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Q_B</Name>
+                <Description>Quaternion B ( scalar + 3 entry vector )</Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Product</Name>
+                <Description>Quaternion Product ( scalar+ 3 entry vector)</Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Command>
+            <Line>Quaternion_Product_Block(Q_A, Q_B, float Output);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <Line>void Quaternion_Product_Block(float *%Q_A%,float * %Q_B%,float  %Product%)</Line>
+            <Line>{</Line>
+            <Line>%Q_A%[0]</Line>
+            <Line>}</Line>
+        </Function>
+    </Block>
+</Library>

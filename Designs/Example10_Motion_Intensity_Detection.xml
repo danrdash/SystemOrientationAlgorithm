@@ -1,0 +1,1097 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2384</AppVersion>
+    <Location>C:/AlgoBuilder/Example10_Motion_Intensity_Detection</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-L476RG + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Sensor_Hub_1_out</Node>
+        <Node>Acceleration_g_1_data</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out2</Node>
+        <Node>Demux_Float_1_out3</Node>
+        <Node>Sum_1_out</Node>
+        <Node>Constant_Int_2_out</Node>
+        <Node>Modulo_1_out</Node>
+        <Node>Constant_Int_3_out</Node>
+        <Node>Sensor_Hub_1_out</Node>
+        <Node>Iteration_Counter_1_out</Node>
+        <Node>IntensityClasification_1_Output</Node>
+        <Node>Circular_Buffer_1_out</Node>
+        <Node>Circular_Buffer_1_size</Node>
+        <Node>Circular_Buffer_2_out</Node>
+        <Node>Circular_Buffer_2_size</Node>
+        <Node>Circular_Buffer_3_out</Node>
+        <Node>Circular_Buffer_3_size</Node>
+        <Node>Variance_1_Output</Node>
+        <Node>Variance_2_Output</Node>
+        <Node>Variance_3_Output</Node>
+        <Node>Equal_to_1_out</Node>
+        <Node>Equal_to_1_out</Node>
+        <Node>Equal_to_1_out</Node>
+    </Nodes>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>184</X>
+        <Y>280</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>16</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>1</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>1</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Acceleration [g]</Name>
+        <DisplayName>Acceleration##[g]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Retrieve the accelerometer data.</Description>
+        <X>332</X>
+        <Y>280</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Accelerometer data (acceleration) in g unit.</Description>
+                <Node>Acceleration_g_1_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Accelero_Sensor_GetData(%SensorHubHandle%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Accelero_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>477</X>
+        <Y>278</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Acceleration_g_1_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>583</X>
+        <Y>278</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out2</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_2_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+                <Node>Circular_Buffer_2_size</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>48</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>583</X>
+        <Y>334</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out3</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_3_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+                <Node>Circular_Buffer_3_size</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>48</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Variance</Name>
+        <DisplayName>Variance</DisplayName>
+        <Version>1.3</Version>
+        <BlockNumber>2</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>2</SubdesignType>
+        <Description>description</Description>
+        <X>707</X>
+        <Y>278</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>48</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Circular_Buffer_2_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>CycleCount</Name>
+                <Description>Cycle count of the loop</Description>
+                <Node>Circular_Buffer_2_size</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in_cond</Name>
+                <Description>Conditional Input</Description>
+                <Node>Equal_to_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Variance_2_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Variance(%Input%, %CycleCount%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Variance.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Equal to (=)</Name>
+        <DisplayName>=</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Checks if in1 is equal to in2. Returns 1 if the condition is true, 0 otherwise.</Description>
+        <X>625</X>
+        <Y>459</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Modulo_1_out</Node>
+            </Input>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Int_3_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Equal_to_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>if (%in1%[0] == %in2%[0]) %out%[0] = 1; else %out%[0] = 0;</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Modulo</Name>
+        <DisplayName>Mod</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Computes the remainder that results from performing integer division in1 by value in2.</Description>
+        <X>474</X>
+        <Y>449</Y>
+        <Width>50</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Iteration_Counter_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Modulo_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] MODULO %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>506</X>
+        <Y>503</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>0</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Iteration Counter [-]</Name>
+        <DisplayName>Iteration##Counter [-]</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Return the number of main loop iteration.</Description>
+        <X>336</X>
+        <Y>364</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Counter output.</Description>
+                <Node>Iteration_Counter_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>GetIterationCounter(%SensorHubHandle%, %out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Variance</Name>
+        <DisplayName>Variance</DisplayName>
+        <Version>1.3</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>2</SubdesignType>
+        <Description>description</Description>
+        <X>707</X>
+        <Y>221</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>48</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Circular_Buffer_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>CycleCount</Name>
+                <Description>Cycle count of the loop</Description>
+                <Node>Circular_Buffer_1_size</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in_cond</Name>
+                <Description>Conditional Input</Description>
+                <Node>Equal_to_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Variance_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Variance(%Input%, %CycleCount%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Variance.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Circular Buffer</Name>
+        <DisplayName>Circular##Buffer</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Stores data into circular buffer.</Description>
+        <X>583</X>
+        <Y>221</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Data input.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Buffer Size%</Size>
+                <Name>out</Name>
+                <Description>Buffer output.</Description>
+                <Node>Circular_Buffer_1_out</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>size</Name>
+                <Description>Buffer Size.</Description>
+                <Node>Circular_Buffer_1_size</Node>
+            </Output>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>full</Name>
+                <Description>Buffer full flag. Returns 1 if the buffer is full, 0 otherwise.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Size</Name>
+                <Value>48</Value>
+                <Min>1</Min>
+                <Max>4096</Max>
+                <Description>Size of the buffer.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>CircularBuffer(%in%, %out%, %size%, %full%, %mem%, %Buffer Size%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Sum</Name>
+        <DisplayName>SUM</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block will "SUM" input values. Number of input values and it's sign are confogurable.</Description>
+        <X>833</X>
+        <Y>277</Y>
+        <Width>50</Width>
+        <Height>45</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>First operand.</Description>
+                <Node>Variance_1_Output</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Second operand.</Description>
+                <Node>Variance_2_Output</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Variance_3_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Result.</Description>
+                <Node>Sum_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign1</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign2</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign3</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign4</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign5</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign6</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign7</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign8</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign9</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>9</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign10</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>10</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign11</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>11</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign12</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>12</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign13</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>13</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign14</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>14</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign15</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>15</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Sign16</Name>
+                <Value>0</Value>
+                <Enum>+=0,-=1</Enum>
+                <Description>Defines the input sign.</Description>
+                <DisplayDependency>Number of inputs</DisplayDependency>
+                <DisplayCondition>16</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = %in1%[0] + %in2%[0];</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Constant (Int)</Name>
+        <DisplayName>%Value%##(Int)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Defines integer constant.</Description>
+        <X>357</X>
+        <Y>507</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Constant value.</Description>
+                <Node>Constant_Int_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Value</Name>
+                <Value>32</Value>
+                <Description>Constant value.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>%out%[0] = %Value%;</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Variance</Name>
+        <DisplayName>Variance</DisplayName>
+        <Version>1.3</Version>
+        <BlockNumber>3</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>2</SubdesignType>
+        <Description>description</Description>
+        <X>707</X>
+        <Y>333</Y>
+        <Width>80</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>48</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Circular_Buffer_3_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>CycleCount</Name>
+                <Description>Cycle count of the loop</Description>
+                <Node>Circular_Buffer_3_size</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>in_cond</Name>
+                <Description>Conditional Input</Description>
+                <Node>Equal_to_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>Variance_3_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Variance(%Input%, %CycleCount%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Variance.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>IntensityClasification</Name>
+        <DisplayName>IntensityClasification</DisplayName>
+        <Version>1.14</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>928</X>
+        <Y>274</Y>
+        <Width>80</Width>
+        <Height>50</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>Input</Name>
+                <Description></Description>
+                <Node>Sum_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>Output</Name>
+                <Description></Description>
+                <Node>IntensityClasification_1_Output</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>IntensityClasification(%Input%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>IntensityClasification.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>1053</X>
+        <Y>279</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>IntensityClasification_1_Output</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Motion##Intensity</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>Motion Intensity</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>MotionID</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>Waveform 3</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>Waveform 4</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Waveform 5</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Waveform 6</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value></Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>1</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>10</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>

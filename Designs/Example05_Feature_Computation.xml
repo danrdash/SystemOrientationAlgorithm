@@ -1,0 +1,802 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2384</AppVersion>
+    <Location>C:/AlgoBuilder/Example05_Feature_Computation</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-L476RG + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Acceleration_g_2_data</Node>
+        <Node>Magnitude_1_out</Node>
+        <Node>Input_Value_Binary_1_out</Node>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>Feature_Computation_1_max</Node>
+        <Node>Feature_Computation_1_min</Node>
+        <Node>Feature_Computation_1_mean</Node>
+        <Node>Feature_Computation_1_var</Node>
+        <Node>Feature_Computation_1_peak</Node>
+        <Node>Feature_Computation_1_energy</Node>
+        <Node>Mux_Float_1_out</Node>
+        <Node>Mux_Float_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Button To Reset Output Values</Text>
+        <X>471</X>
+        <Y>515</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text> Feature Calculation Demonstration </Text>
+        <X>494</X>
+        <Y>233</Y>
+    </TextNote>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>790</X>
+        <Y>364</Y>
+        <Width>60</Width>
+        <Height>90</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Feature_Computation_1_max</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>Feature_Computation_1_min</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>Feature_Computation_1_mean</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in4</Name>
+                <Description>Input 4.</Description>
+                <Node>Feature_Computation_1_var</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in5</Name>
+                <Description>Input 5.</Description>
+                <Node>Feature_Computation_1_peak</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in6</Name>
+                <Description>Input 6.</Description>
+                <Node>Feature_Computation_1_energy</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>6</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Feature Computation</Name>
+        <DisplayName>Feature##Computation</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Calculates selected features of input signal. The value are calculated from the N last samples.</Description>
+        <X>657</X>
+        <Y>370</Y>
+        <Width>80</Width>
+        <Height>80</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Magnitude_1_out</Node>
+            </Input>
+            <Input>
+                <Type>INT</Type>
+                <Size>1</Size>
+                <Name>reset</Name>
+                <Description>Reset signal. Rising edge trigers the reset.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>max</Name>
+                <Description>Maximum value of the input signal.</Description>
+                <Node>Feature_Computation_1_max</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>min</Name>
+                <Description>Minimum value of the input signal.</Description>
+                <Node>Feature_Computation_1_min</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>mean</Name>
+                <Description>Mean value of the input signal.</Description>
+                <Node>Feature_Computation_1_mean</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>var</Name>
+                <Description>Variance value of the input signal.</Description>
+                <Node>Feature_Computation_1_var</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>peak</Name>
+                <Description>Peak-to-peak of the input signal.</Description>
+                <Node>Feature_Computation_1_peak</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>energy</Name>
+                <Description>Energy of the input signal.</Description>
+                <Node>Feature_Computation_1_energy</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Buffer Length</Name>
+                <Value>200</Value>
+                <Description>Define length of buffer used for features calculation.</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>INT</Type>
+                <Name>mem1</Name>
+                <Size>2</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>mem2</Name>
+                <Size>%Buffer Length%</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>Feature_Computation(%in%, %reset%, %max%, %min%, %mean%, %var%, %peak%, %energy%, %Buffer Length%, %mem1%, %mem2%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Acceleration [g]</Name>
+        <DisplayName>Acceleration##[g]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Retrieve the accelerometer data.</Description>
+        <X>447</X>
+        <Y>372</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Accelerometer data (acceleration) in g unit.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Accelero_Sensor_GetData(%SensorHubHandle%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Accelero_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Magnitude</Name>
+        <DisplayName>Magnitude</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Calculates magnidude of the input vector.</Description>
+        <X>558</X>
+        <Y>272</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>in</Name>
+                <Description>Input vector.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Magnitude.</Description>
+                <Node>Magnitude_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>%out%[0] = sqrt(%in%[0]*%in%[0] + %in%[1]*%in%[1] + %in%[2]*%in%[2]);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>295</X>
+        <Y>372</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>100</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>1</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>0</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Value (Binary)</Name>
+        <DisplayName>Input Value##(Binary)</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Get up to eight logic values from Unicleo-GUI.</Description>
+        <X>527</X>
+        <Y>456</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>INT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>out</Name>
+                <Description>Output data.</Description>
+                <Node>Input_Value_Binary_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Input##Value##Binary</Value>
+                <Description>Title of the window.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>1</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 1</Name>
+                <Value>0</Value>
+                <Description>Defines default value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 2</Name>
+                <Value>0</Value>
+                <Description>Defines default value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 3</Name>
+                <Value>0</Value>
+                <Description>Defines default value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 4</Name>
+                <Value>0</Value>
+                <Description>Defines default value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 5</Name>
+                <Value>0</Value>
+                <Description>Defines default value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 6</Name>
+                <Value>0</Value>
+                <Description>Defines default value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 7</Name>
+                <Value>0</Value>
+                <Description>Defines default value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Default Value 8</Name>
+                <Value>0</Value>
+                <Description>Defines default value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Reset</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Value 2</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Value 3</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Value 4</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value></Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode>
+            <Line>Input_Value_Init(%out%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Value</Name>
+        <DisplayName>Value</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Displays up to eight integer values.</Description>
+        <X>890</X>
+        <Y>363</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Values%</Size>
+                <Name>in</Name>
+                <Description>Input data to display. The input data size has to match with number of values.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Values</Name>
+                <Value>6</Value>
+                <Min>1</Min>
+                <Max>8</Max>
+                <Description>Defines number of values to display. Value must be from 1 to 8.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Window Name</Name>
+                <Value>Output##Values</Value>
+                <Description>Label of the values window.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 1 Name</Name>
+                <Value>Max</Value>
+                <Description>Label of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 2 Name</Name>
+                <Value>Min</Value>
+                <Description>Label of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 3 Name</Name>
+                <Value>Mean</Value>
+                <Description>Label of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 4 Name</Name>
+                <Value>Var</Value>
+                <Description>Label of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 5 Name</Name>
+                <Value>Peak-to-Peak</Value>
+                <Description>Label of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 6 Name</Name>
+                <Value>Energy</Value>
+                <Description>Label of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 7 Name</Name>
+                <Value>Value 7</Value>
+                <Description>Label of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Value 8 Name</Name>
+                <Value>Value 8</Value>
+                <Description>Label of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 1 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 1.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 2 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 2.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 3 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 3.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 4 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 4.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 5 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 5.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 6 Name</Name>
+                <Value>[g]</Value>
+                <Description>Unit of the value 6.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 7 Name</Name>
+                <Value>Unit 7</Value>
+                <Description>Unit of the value 7.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>7</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit 8 Name</Name>
+                <Value>Unit 8</Value>
+                <Description>Unit of the value 8.</Description>
+                <DisplayDependency>Number of Values</DisplayDependency>
+                <DisplayCondition>8</DisplayCondition>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>890</X>
+        <Y>421</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>6</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Output##Values</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>Max</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>Min</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>Mean</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>Var</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Peak-to-Peak</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Energy</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>[g]</Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>1</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>4</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>

@@ -1,0 +1,648 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Subdesign>
+    <Version>1.0</Version>
+    <AppVersion>2.1.0.2388</AppVersion>
+    <SubdesignBlock>
+        <Name>GradF_g_b</Name>
+        <DisplayName>GradF_g_b</DisplayName>
+        <Version>1.36</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>0</X>
+        <Y>0</Y>
+        <Width>80</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Acc</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Magnetometer</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>bVector</Name>
+                <Description></Description>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quaternion</Name>
+                <Description></Description>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Output</Name>
+                <Description></Description>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>GradF_g_b(%Acc%, %Magnetometer%, %bVector%, %Quaternion%, %Output%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>GradF_g_b.xml</File>
+        </Function>
+    </SubdesignBlock>
+    <Nodes>
+        <Node>Input_Terminal_Float_3_out</Node>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>Input_Terminal_Float_3_out</Node>
+        <Node>Input_Terminal_Float_1_out</Node>
+        <Node>Input_Terminal_Float_4_out</Node>
+        <Node>Input_Terminal_Float_2_out</Node>
+        <Node>J_g_b_1_O3</Node>
+        <Node>J_g_b_1_O4</Node>
+        <Node>J_g_b_1_O5</Node>
+        <Node>J_g_b_1_O6</Node>
+        <Node>Matrix_Mult_g_b_1_Matrix_Mult_Out</Node>
+        <Node>Transpose_6_to_4_1_O1</Node>
+        <Node>Transpose_6_to_4_1_O2</Node>
+        <Node>Transpose_6_to_4_1_O3</Node>
+        <Node>Transpose_6_to_4_1_O4</Node>
+        <Node>F_g_b_1_F_gb</Node>
+        <Node>J_g_b_1_O1</Node>
+        <Node>J_g_b_1_O2</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Magnetometer</Text>
+        <X>-615</X>
+        <Y>-199</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Quaternion Input</Text>
+        <X>-579</X>
+        <Y>-13</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>J(Transpose)F</Text>
+        <X>240</X>
+        <Y>-113</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>bVector</Text>
+        <X>-639</X>
+        <Y>-98</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>Acc</Text>
+        <X>-580</X>
+        <Y>-295</Y>
+    </TextNote>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-619</X>
+        <Y>-164</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Magnetometer</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>3</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-629</X>
+        <Y>-76</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_3_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>bVector</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-569</X>
+        <Y>19</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Quaternion</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Input Terminal (Float)</Name>
+        <DisplayName>Input Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>4</BlockNumber>
+        <Description>Float input terminal for subdesigns.</Description>
+        <X>-561</X>
+        <Y>-265</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Input Size%</Size>
+                <Name>out</Name>
+                <Description>Subdesign input.</Description>
+                <Node>Input_Terminal_Float_4_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Input Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block input size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Name</Name>
+                <Value>Acc</Value>
+                <Description>This property will be used for function block input name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Input Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block input description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>F_g_b</Name>
+        <DisplayName>F_g_b</DisplayName>
+        <Version>1.9</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-321</X>
+        <Y>-204</Y>
+        <Width>80</Width>
+        <Height>60</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>bVect</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_3_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Magnetometer</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Acc</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_4_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quat</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>F_gb</Name>
+                <Description></Description>
+                <Node>F_g_b_1_F_gb</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>F_g_b(%bVect%, %Magnetometer%, %Acc%, %Quat%, %F_gb%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>F_g_b.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>J_g_b</Name>
+        <DisplayName>J_g_b</DisplayName>
+        <Version>1.18</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-331</X>
+        <Y>-34</Y>
+        <Width>80</Width>
+        <Height>90</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>bVect</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_3_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Quat</Name>
+                <Description></Description>
+                <Node>Input_Terminal_Float_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O1</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O2</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O3</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O4</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O4</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O5</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O5</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>O6</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O6</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>J_g_b(%bVect%, %Quat%, %O1%, %O2%, %O3%, %O4%, %O5%, %O6%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>J_g_b.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Transpose_6_to_4</Name>
+        <DisplayName>Transpose_6_to_4</DisplayName>
+        <Version>1.10</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>-165</X>
+        <Y>-40</Y>
+        <Width>80</Width>
+        <Height>90</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row1</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row2</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row3</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O3</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row4</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O4</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row5</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O5</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Row6</Name>
+                <Description></Description>
+                <Node>J_g_b_1_O6</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>O1</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>O2</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O2</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>O3</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O3</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>O4</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O4</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Transpose_6_to_4(%Row1%, %Row2%, %Row3%, %Row4%, %Row5%, %Row6%, %O1%, %O2%, %O3%, %O4%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Transpose_6_to_4.xml</File>
+        </Function>
+    </Block>
+    <Block>
+        <Name>Output Terminal (Float)</Name>
+        <DisplayName>Output Terminal##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float output terminal for subdesigns.</Description>
+        <X>232</X>
+        <Y>-74</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Output Size%</Size>
+                <Name>in</Name>
+                <Description>Subdesign output.</Description>
+                <Node>Matrix_Mult_g_b_1_Matrix_Mult_Out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Output Size</Name>
+                <Value>4</Value>
+                <Min>1</Min>
+                <Description>This property will be used for function block output size of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Name</Name>
+                <Value>Output</Value>
+                <Description>This property will be used for function block output name of the subdesign.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Output Description</Name>
+                <Value></Value>
+                <Description>This property will be used for function block output description of the subdesign.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Matrix_Mult_g_b</Name>
+        <DisplayName>Matrix_Mult_g_b</DisplayName>
+        <Version>1.14</Version>
+        <BlockNumber>1</BlockNumber>
+        <IsSubdesign>1</IsSubdesign>
+        <SubdesignType>1</SubdesignType>
+        <Description>description</Description>
+        <X>20</X>
+        <Y>-155</Y>
+        <Width>80</Width>
+        <Height>75</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>I1</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>I2</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O2</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>I3</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O3</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>I4</Name>
+                <Description></Description>
+                <Node>Transpose_6_to_4_1_O4</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>6</Size>
+                <Name>I_F_1</Name>
+                <Description></Description>
+                <Node>F_g_b_1_F_gb</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>4</Size>
+                <Name>Matrix_Mult_Out</Name>
+                <Description></Description>
+                <Node>Matrix_Mult_g_b_1_Matrix_Mult_Out</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Matrix_Mult_g_b(%I1%, %I2%, %I3%, %I4%, %I_F_1%, %Matrix_Mult_Out%);</Line>
+        </Command>
+        <InitCode/>
+        <Function>
+            <File>Matrix_Mult_g_b.xml</File>
+        </Function>
+    </Block>
+</Subdesign>

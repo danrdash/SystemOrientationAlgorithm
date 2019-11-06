@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project>
+    <Version>1.1</Version>
+    <AppVersion>2.1.0.2384</AppVersion>
+    <Location>C:/AlgoBuilder/Example04_Filters</Location>
+    <Toolchain>SW4STM32</Toolchain>
+    <Target>NUCLEO-L476RG + X-NUCLEO-IKS01A2</Target>
+    <Nodes>
+        <Node>Sensor_Hub_2_out</Node>
+        <Node>FIR_Filter_1_out</Node>
+        <Node>Mux_Float_1_out</Node>
+        <Node>Acceleration_g_2_data</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>Demux_Float_1_out1</Node>
+        <Node>IIR_Filter_1_out</Node>
+    </Nodes>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>FIR Low Pass##Filter Order: 50 ##Cut Off: 0.05</Text>
+        <X>521</X>
+        <Y>433</Y>
+    </TextNote>
+    <TextNote>
+        <Name>Text Note</Name>
+        <Text>IIR Butterworth##Filter Order: 3##Cut Off: 0.05 </Text>
+        <X>521</X>
+        <Y>498</Y>
+    </TextNote>
+    <Block>
+        <Name>IIR Filter</Name>
+        <DisplayName>IIR##Filter</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block implements arbitrary order recursive (IIR) filters. The filters are implemented as a cascade of second order Biquad sections. Using Direct Form I Structure.</Description>
+        <X>654</X>
+        <Y>491</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Filtered signal.</Description>
+                <Node>IIR_Filter_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Coefficients File Name</Name>
+                <Value></Value>
+                <Description>The name of file with coefficients values. If a filename is entered it is used instead of coeeficents in the properties below.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Filter Order</Name>
+                <Value>3</Value>
+                <Min>1</Min>
+                <Max>4</Max>
+                <Description></Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b10</Name>
+                <Value>0.00042</Value>
+                <Description>b10 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b11</Name>
+                <Value>0.00083</Value>
+                <Description>b11 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b12</Name>
+                <Value>0.00042</Value>
+                <Description>b12 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a10</Name>
+                <Value>1.00000</Value>
+                <Description>a10 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a11</Name>
+                <Value>1.83208</Value>
+                <Description>a11 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a12</Name>
+                <Value>-0.85491</Value>
+                <Description>a12 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b20</Name>
+                <Value>1.00000</Value>
+                <Description>b20 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b21</Name>
+                <Value>1.00001</Value>
+                <Description>b21 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b22</Name>
+                <Value>0.00000</Value>
+                <Description>b22 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a20</Name>
+                <Value>1.00000</Value>
+                <Description>a20 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a21</Name>
+                <Value>0.85408</Value>
+                <Description>a21 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>a22</Name>
+                <Value>0.00000</Value>
+                <Description>a22 coeeficient</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>filter</Name>
+                <Size>3</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>state</Name>
+                <Size>1</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>coeffs</Name>
+                <Size>1</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>IIR_Filter((arm_biquad_casd_df1_inst_f32*) %filter%, (float32_t*) %in%, (float32_t*) %out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>IIR_Filter_Init((arm_biquad_casd_df1_inst_f32*) %filter%, %Filter Order%, (float32_t*) %coeffs%, (float32_t*) %state%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>FIR Filter</Name>
+        <DisplayName>FIR##Filter</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>This block implements Finite Impulse Response (FIR) filters. The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient b[n] is multiplied by a state variable which equals a previous input sample x[n].</Description>
+        <X>654</X>
+        <Y>427</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in</Name>
+                <Description>Input signal.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Filtered signal.</Description>
+                <Node>FIR_Filter_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Coefficients File Name</Name>
+                <Value>fir_lp_30_0.05.txt</Value>
+                <Description>The name of file with coefficients values. If a filename is entered it is used instead of coeeficents in the properties below.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Tabs</Name>
+                <Value>10</Value>
+                <Min>0</Min>
+                <Max>10</Max>
+                <Description>Order of the filter is equal to number of tabs minus 1.</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b0</Name>
+                <Value>1</Value>
+                <Description>b0 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b1</Name>
+                <Value>0</Value>
+                <Description>b1 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b2</Name>
+                <Value>0</Value>
+                <Description>b2 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b3</Name>
+                <Value>0</Value>
+                <Description>b3 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b4</Name>
+                <Value>0</Value>
+                <Description>b4 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b5</Name>
+                <Value>0</Value>
+                <Description>b5 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b6</Name>
+                <Value>0</Value>
+                <Description>b6 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b7</Name>
+                <Value>0</Value>
+                <Description>b7 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b8</Name>
+                <Value>0</Value>
+                <Description>b8 coeeficient</Description>
+            </Property>
+            <Property>
+                <Type>FLOAT</Type>
+                <Name>b9</Name>
+                <Value>0</Value>
+                <Description>b9 coeeficient</Description>
+            </Property>
+        </Properties>
+        <Memory>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>filter</Name>
+                <Size>3</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>state</Name>
+                <Size>%Number of Tabs%</Size>
+            </Item>
+            <Item>
+                <Type>FLOAT</Type>
+                <Name>coeffs</Name>
+                <Size>%Number of Tabs%</Size>
+            </Item>
+        </Memory>
+        <Command>
+            <Line>FIR_Filter((arm_fir_instance_f32*) %filter%, (float32_t*) %in%, (float32_t*) %out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>FIR_Filter_Init((arm_fir_instance_f32*) %filter%, %Number of Tabs%, (float32_t*) %coeffs%, (float32_t*) %state%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Mux (Float)</Name>
+        <DisplayName>Mux [%Number of inputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float multiplexer. Creates array from scalar inputs.</Description>
+        <X>784</X>
+        <Y>370</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <VariableCount>%Number of inputs%</VariableCount>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in1</Name>
+                <Description>Input 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in2</Name>
+                <Description>Input 2.</Description>
+                <Node>FIR_Filter_1_out</Node>
+            </Input>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>in3</Name>
+                <Description>Input 3.</Description>
+                <Node>IIR_Filter_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>%Number of inputs%</Size>
+                <Name>out</Name>
+                <Description>Output.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of inputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>[Sensor Hub]</Name>
+        <DisplayName>[Sensor Hub]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Sensor Hub provides links to sensor and algorithms in order to retrieve data from them.</Description>
+        <X>245</X>
+        <Y>374</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs/>
+        <Outputs>
+            <Output>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>out</Name>
+                <Description>Sensor Hub handler.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate Control</Name>
+                <Value>0</Value>
+                <Enum>Timer=0,Accelerometer=1,Gyroscope=2</Enum>
+                <Description>Defines the data rate source.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Data Rate</Name>
+                <Value>100</Value>
+                <Min>1</Min>
+                <Max>400</Max>
+                <Description>Defines the sensor's and algorithm's data rate in Hz. If accelerometer or gyroscope is selected as data rate source, the closest higher available output data rate (ODR) is selected.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Accelerometer Full Scale</Name>
+                <Value>0</Value>
+                <Enum>2 g=0,4 g=1,8 g=2,16 g=3</Enum>
+                <Description>Defines the accelerometer full scale.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Gyroscope Full Scale</Name>
+                <Value>0</Value>
+                <Enum>245 dps=0,500 dps=1,1000 dps=2,2000 dps=3</Enum>
+                <Description>Defines the gyroscope full scale.</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Sensor_Hub_Handler(&amp;%out%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Sensor_Hub_Init(%Data Rate Control%, %Data Rate%, %Accelerometer Full Scale%, %Gyroscope Full Scale%);</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Demux (Float)</Name>
+        <DisplayName>Demux [%Number of outputs%]##(Float)</DisplayName>
+        <Version>1.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Float demultiplexer. Creates individual scalar outputs from input array.</Description>
+        <X>533</X>
+        <Y>372</Y>
+        <Width>60</Width>
+        <Height>45</Height>
+        <Inputs>
+            <Input>
+                <Type>FLOAT</Type>
+                <Size>%Number of outputs%</Size>
+                <Name>in1</Name>
+                <Description>Input.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <VariableCount>%Number of outputs%</VariableCount>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out1</Name>
+                <Description>Output 1.</Description>
+                <Node>Demux_Float_1_out1</Node>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out2</Name>
+                <Description>Output 2.</Description>
+            </Output>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>1</Size>
+                <Name>out3</Name>
+                <Description>Output 3.</Description>
+            </Output>
+        </Outputs>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of outputs</Name>
+                <Value>3</Value>
+                <Min>2</Min>
+                <Max>16</Max>
+                <Description></Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command/>
+        <InitCode/>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Acceleration [g]</Name>
+        <DisplayName>Acceleration##[g]</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>2</BlockNumber>
+        <Description>Retrieve the accelerometer data.</Description>
+        <X>383</X>
+        <Y>374</Y>
+        <Width>100</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VOID</Type>
+                <Size>1</Size>
+                <Name>SensorHubHandle</Name>
+                <Description>Connect to Sensor Hub output.</Description>
+                <Node>Sensor_Hub_2_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs>
+            <Output>
+                <Type>FLOAT</Type>
+                <Size>3</Size>
+                <Name>data</Name>
+                <Description>Accelerometer data (acceleration) in g unit.</Description>
+                <Node>Acceleration_g_2_data</Node>
+            </Output>
+        </Outputs>
+        <Properties/>
+        <Memory/>
+        <Command>
+            <Line>Accelero_Sensor_GetData(%SensorHubHandle%, %data%);</Line>
+        </Command>
+        <InitCode>
+            <Line>Accelero_Init();</Line>
+        </InitCode>
+        <Function/>
+    </Block>
+    <Block>
+        <Name>Graph</Name>
+        <DisplayName>Graph</DisplayName>
+        <Version>2.0</Version>
+        <BlockNumber>1</BlockNumber>
+        <Description>Graph. Displays up to six real-time curves. The X-axis represents time, Y-axis is value.</Description>
+        <X>893</X>
+        <Y>372</Y>
+        <Width>80</Width>
+        <Height>40</Height>
+        <Inputs>
+            <Input>
+                <Type>VARIANT</Type>
+                <Size>%Number of Curves%</Size>
+                <Name>in</Name>
+                <Description>Input data to plot (y-axis value). The input data size has to match with number of curves.</Description>
+                <Node>Mux_Float_1_out</Node>
+            </Input>
+        </Inputs>
+        <Outputs/>
+        <Properties>
+            <Property>
+                <Type>INT</Type>
+                <Name>Number of Curves</Name>
+                <Value>3</Value>
+                <Min>1</Min>
+                <Max>6</Max>
+                <Description>Defines number of curves to plot. Value must be from 1 to 6.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Graph Name</Name>
+                <Value>Accel.##X axis</Value>
+                <Description>Label of the graph.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 1 Name</Name>
+                <Value>No Filter</Value>
+                <Description>Name of the waveform 1.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>1</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 2 Name</Name>
+                <Value>FIR</Value>
+                <Description>Name of the waveform 2.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>2</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 3 Name</Name>
+                <Value>IIR</Value>
+                <Description>Name of the waveform 3.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>3</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 4 Name</Name>
+                <Value>Waveform 4</Value>
+                <Description>Name of the waveform 4.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>4</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 5 Name</Name>
+                <Value>Waveform 5</Value>
+                <Description>Name of the waveform 5.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>5</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Waveform 6 Name</Name>
+                <Value>Waveform 6</Value>
+                <Description>Name of the waveform 6.</Description>
+                <DisplayDependency>Number of Curves</DisplayDependency>
+                <DisplayCondition>6</DisplayCondition>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Unit Name</Name>
+                <Value>[g]</Value>
+                <Description>Name of graph units.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Zero axis position</Name>
+                <Value>3</Value>
+                <Enum>Bottom=1,Middle=3,Top=5</Enum>
+                <Description>Horizontal position of zero axis.</Description>
+            </Property>
+            <Property>
+                <Type>INT</Type>
+                <Name>Auto-scale</Name>
+                <Value>0</Value>
+                <Enum>OFF=0,ON=1</Enum>
+                <Description>Auto-scale of Y axis enabled.</Description>
+            </Property>
+            <Property>
+                <Type>STRING</Type>
+                <Name>Full Scale</Name>
+                <Value>2</Value>
+                <Description>Axis Y full scale. (Format: 2.5 or -1.5:3)</Description>
+            </Property>
+        </Properties>
+        <Memory/>
+        <Command>
+            <Line>Display_Update(%in%);</Line>
+        </Command>
+        <InitCode/>
+        <Function/>
+    </Block>
+</Project>
