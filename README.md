@@ -27,7 +27,7 @@ you can now observe a 3D model of the system, simulation movement should mimic s
 
 ## IDE
 
-ST AlgoBuilder
+[ST AlgoBuilder](https://www.st.com/en/embedded-software/algobuilder.html)
 
 ## License
 
