@@ -18,7 +18,7 @@ STSW UtilityLink: https://www.st.com/en/development-tools/stsw-link004.html
 
 After installing and downloading all of the above follow the next steps:
 1. Open AlgoBuilder
-2. Open MARG Design -  inside Designs folder
+2. Open MARG Design - inside Designs folder
 3. Compile and run
 4. Open Unicleo 
 5. Click Start
