@@ -14,6 +14,7 @@ the micro-processor should be connected by microUSB to your PC.
 Next you must install and download AlgoBuilder: https://www.st.com/en/embedded-software/algobuilder.html
 Unicleo GUI: https://www.st.com/en/embedded-software/unicleo-gui.html
 System workbench for STM32: https://www.st.com/en/development-tools/sw4stm32.html
+
 STSW UtilityLink: https://www.st.com/en/development-tools/stsw-link004.html
 
 After installing and downloading all of the above follow the next steps:
