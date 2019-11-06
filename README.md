@@ -25,7 +25,7 @@ After installing and downloading all of the above follow the next steps:
 4. Open Unicleo 
 5. Click Start
 
-you can now observe a 3D model of the system, simulation movement should mimic sensor movement. 
+you can now observe a 3D model of the system, simulation movement should mimic sensor movement, graph that represents quaternions, and graph the represents Euler angles. 
 
 ## IDE
 
