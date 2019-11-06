@@ -10,7 +10,7 @@ X-NUCLEO-IKS01A2 ST motion MEMS attached (https://www.st.com/en/ecosystems/x-nuc
 
 the micro-processor should be connected by microUSB to your PC.
 
-###IDE Installation
+### IDE Installation
 Next you must install and download AlgoBuilder: https://www.st.com/en/embedded-software/algobuilder.html
 Unicleo GUI: https://www.st.com/en/embedded-software/unicleo-gui.html
 System workbench for STM32: https://www.st.com/en/development-tools/sw4stm32.html
